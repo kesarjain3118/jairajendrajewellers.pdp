@@ -1,0 +1,112 @@
+/* Import Tailwind's base, components, and utilities */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Your Custom CSS Variables and Styles */
+:root {
+  --rich-brown: #36281e;
+  --elegant-gold: #b38b4d;
+  --soft-cream: #f4ede4;
+  --cream-variant: #fcf9f0;
+  --gold-accent: rgba(179, 139, 77, 0.2);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Base Body Styles */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--soft-cream);
+  color: var(--rich-brown);
+  margin: 0;
+  padding: 0;
+}
+
+@layer components {
+  /* Primary Button Style */
+  .btn-explore, .btn-primary {
+    @apply bg-rich-brown text-soft-cream rounded-md py-3 px-8 font-medium shadow-md transition-all duration-300 ease-in-out inline-block cursor-pointer;
+  }
+  .btn-explore:hover, .btn-primary:hover {
+    @apply bg-elegant-gold shadow-lg -translate-y-0.5 scale-105;
+  }
+
+  /* Navigation Bar */
+  .navbar {
+    @apply fixed top-0 left-0 w-full z-[1000] bg-soft-cream/90 backdrop-blur-sm shadow-sm;
+  }
+  .nav-link {
+    @apply text-rich-brown relative pb-1 transition-colors duration-300;
+  }
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-elegant-gold transition-all duration-300;
+  }
+  .nav-link:hover {
+    @apply text-elegant-gold;
+  }
+  .nav-link:hover::after, .nav-link.active::after {
+    @apply w-full;
+  }
+  .nav-link.active {
+      @apply text-elegant-gold font-semibold;
+  }
+
+  /* Mobile Menu Icon */
+  .menu-icon span {
+    @apply block h-0.5 w-full bg-rich-brown rounded-full transition-all duration-300 ease-in-out;
+  }
+  .menu-icon[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-icon[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .menu-icon[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Product Filtering and Cards */
+  .product-card {
+    @apply relative overflow-hidden rounded-lg bg-soft-cream shadow-lg transition-all duration-300 ease-in-out;
+  }
+  .product-card:hover {
+    @apply -translate-y-1 shadow-2xl;
+  }
+  .filter-button {
+    @apply bg-transparent text-rich-brown font-semibold border border-elegant-gold/50 transition-all duration-300 py-2.5 px-6 rounded-full;
+  }
+  .filter-button.active {
+    @apply bg-elegant-gold text-soft-cream shadow-md border-elegant-gold;
+  }
+  .filter-button:hover:not(.active) {
+    @apply bg-elegant-gold/10;
+  }
+}
+
+/* Other Custom Styles (less common utilities) */
+blockquote {
+  @apply font-libre border-l-4 border-elegant-gold pl-6 select-none;
+}
+
+.whatsapp-button {
+  @apply fixed bottom-5 right-5 bg-[#25D366] text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg z-[1000] transition-all duration-300 ease-in-out cursor-pointer;
+}
+.whatsapp-button:hover {
+  @apply bg-[#128C7E] scale-105;
+}
+
+#product-modal.hidden {
+    display: none;
+}
+#product-modal {
+    display: flex;
+}
+/* Add this to the end of your style.css file */
+
+.nav-mobile {
+  @apply fixed top-20 left-0 w-full bg-soft-cream/95 backdrop-blur-sm shadow-lg p-6 z-[999];
+  @apply flex flex-col space-y-4;
+  @apply transform -translate-y-[150%] transition-transform duration-500 ease-in-out;
+}
+
+.nav-mobile.is-open {
+  @apply transform translate-y-0;
+}
